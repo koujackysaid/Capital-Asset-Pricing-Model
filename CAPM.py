@@ -23,8 +23,8 @@ rf = rf.append(sup_data)
 # 4. Subtract rf
 mly_ret['AAPL-rf'], mly_ret['^GSPC-rf'] = mly_ret['AAPL']-rf.values, mly_ret['^GSPC']-rf.values
 # 5. Build the regression model and fit
-y= mly_ret['AAPL']
-x= mly_ret['^GSPC']
+y= mly_ret['AAPL-rf']
+x= mly_ret['^GSPC-rf']
 x_sm = sm.add_constant(x)
 model=sm.OLS(y,x_sm)
 result = model.fit()
