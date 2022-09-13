@@ -13,7 +13,7 @@ start = dt.datetime(end.year - 5, end.month, end.day)
 tickers = ['AAPL', '^GSPC']
 # 2. Convert daily return to monthly return
 df = reader.get_data_yahoo(tickers, start, end)['Adj Close']
-mly_ret = df.resample('M').ffill().pct_change().dropna()
+mly_ret = df.resample('M').mean().pct_change().dropna()
 # 3. Collect risk-free rate
 rf = reader.DataReader('F-F_Research_Data_Factors','famafrench', start,end)[0].RF
 rf = rf[1:]
