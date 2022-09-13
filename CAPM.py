@@ -33,3 +33,18 @@ result = model.fit()
 print(result.summary())
 sns.regplot(data=mly_ret, x='^GSPC-rf', y='AAPL-rf').set(title = 'AAPL Beta')
 plt.show()
+
+# 7. residual analysis
+# todo: reference: https://www.zhihu.com/question/40540185
+A = np.vstack([rets_mly['^GSPC-rf'], np.ones(len(rets_mly['^GSPC-rf']))]).T
+lr = np.linalg.lstsq(A, rets_mly['AAPL-rf'],rcond=False)[0]
+print('create matrix: ', A[:5])
+print('coefficient: ', lr)
+
+rets_mly['prediction'] = np.dot(A, lr)
+rets_mly['residuals'] = rets_mly['AAPL-rf'] - rets_mly['prediction']
+print(rets_mly.head())
+
+plt.scatter(rets_mly['^GSPC-rf'], rets_mly['residuals'])
+plt.title('scatter plot of residuals')
+plt.show()
