@@ -10,7 +10,7 @@ y = b + b1(x) + e
 - e is the error terms
 
 In CAPM terms:
-return of asseti = aplha + beta(market return) + error term
+return of asseti = alpha + beta(market return) + error term
 - alpha is the y intercept
 - beta is the slope
 - market return is the benchmark, can choose disecrete index
